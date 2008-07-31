@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>database</type>
+		<description>Language labels for database tables/fields belonging to extension 'frworkportfolio'</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+			<label index="tx_frworkportfolio_record">Client Work Portfolio</label>
+			<label index="tx_frworkportfolio_record.title">Title</label>
+			<label index="tx_frworkportfolio_record.client">Client Name</label>
+			<label index="tx_frworkportfolio_record.project">Project Name</label>
+			<label index="tx_frworkportfolio_record.year">Year Set Live</label>
+			<label index="tx_frworkportfolio_record.cms">CMS</label>
+			<label index="tx_frworkportfolio_record.options">Options</label>
+			<label index="tx_frworkportfolio_record.category">Category</label>
+			<label index="tx_frworkportfolio_record.url">Site Url</label>
+			<label index="tx_frworkportfolio_record.url_caption">Url Caption</label>
+			<label index="tx_frworkportfolio_record.flash">Flash</label>
+			<label index="tx_frworkportfolio_record.gallery">Image Gallery</label>
+			<label index="tx_frworkportfolio_record.gallerycaptions">Gallery Captions</label>
+			<label index="tx_frworkportfolio_options">Client Work Portfolio  Options</label>
+			<label index="tx_frworkportfolio_options.title">Title</label>
+			<label index="tx_frworkportfolio_category">Client Work Portfolio Category</label>
+			<label index="tx_frworkportfolio_category.title">Title</label>
+			<label index="tt_content.list_type_pi1">Client Work Portfolio</label>
+			<label index="flexform.controllerSelection">Select subcontroller</label>
+			<label index="flexform.controllerSelection.default1">default1</label>
+			<label index="flexform.controllerSelection.years">years</label>
+			<label index="flexform.controllerSelection.clientswork">Client Work Listing</label>
+			
+		</languageKey>
+	</data>
+</T3locallang>

@@ -1,0 +1,47 @@
+
+# Common configuration
+plugin.tx_frworkportfolio_mvc1.configurations {
+  templatePath = EXT:frworkportfolio/templates/
+}
+
+includeLibs.tx_div = EXT:div/class.tx_div.php
+includeLibs.tx_lib_switch = EXT:lib/class.tx_lib_switch.php
+includeLibs.tx_frworkportfolio_controller_default1 = EXT:frworkportfolio/controllers/class.tx_frworkportfolio_controller_default1.php
+includeLibs.tx_frworkportfolio_controller_years = EXT:frworkportfolio/controllers/class.tx_frworkportfolio_controller_years.php
+includeLibs.tx_frworkportfolio_controller_clientswork = EXT:frworkportfolio/controllers/class.tx_frworkportfolio_controller_clientswork.php
+
+# The controller switch
+plugin.tx_frworkportfolio_mvc1.controllerSwitch = USER_INT
+plugin.tx_frworkportfolio_mvc1.controllerSwitch {
+    userFunc = tx_lib_switch->main
+    flexFormSheetName = sDEF
+	#userFunc = tx_frworkportfolio_controller_default1->main
+    default1 = USER
+    default1 {
+       userFunc = tx_frworkportfolio_controller_default1->main
+       setupPath = plugin.tx_frworkportfolio_mvc1.configurations
+       defaultAction = listcategories
+       #configurations{
+       		#templatePath = EXT:frworkportfolio/templates/
+       #}
+    }
+    years = USER
+    years {
+       userFunc = tx_frworkportfolio_controller_years->main
+       setupPath = plugin.tx_frworkportfolio_mvc1.configurations
+       defaultAction = listyears
+       #configurations{
+       		#templatePath = EXT:frworkportfolio/templates/
+       #}
+    }
+    clientswork = USER
+    clientswork {
+       userFunc = tx_frworkportfolio_controller_clientswork->main
+       setupPath = plugin.tx_frworkportfolio_mvc1.configurations
+       defaultAction = listclientwork
+       #configurations{
+       		#templatePath = EXT:frworkportfolio/templates/
+       #}
+    }
+}
+tt_content.list.20.frworkportfolio_mvc1 =< plugin.tx_frworkportfolio_mvc1.controllerSwitch
