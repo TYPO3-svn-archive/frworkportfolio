@@ -18,8 +18,8 @@
         <type>select</type>
         <items type="array">
 			<numIndex index="10" type="array">
-                <numIndex index="0">LLL:EXT:frworkportfolio/locallang_db.xml:flexform.controllerSelection.default1</numIndex>
-                <numIndex index="1">default1</numIndex>
+                <numIndex index="0">LLL:EXT:frworkportfolio/locallang_db.xml:flexform.controllerSelection.category</numIndex>
+                <numIndex index="1">category</numIndex>
             </numIndex>
             <numIndex index="20" type="array">
                 <numIndex index="0">LLL:EXT:frworkportfolio/locallang_db.xml:flexform.controllerSelection.years</numIndex>
@@ -28,6 +28,10 @@
             <numIndex index="30" type="array">
                 <numIndex index="0">LLL:EXT:frworkportfolio/locallang_db.xml:flexform.controllerSelection.clientswork</numIndex>
                 <numIndex index="1">clientswork</numIndex>
+            </numIndex>
+            <numIndex index="40" type="array">
+                <numIndex index="0">LLL:EXT:frworkportfolio/locallang_db.xml:flexform.controllerSelection.paging</numIndex>
+                <numIndex index="1">paging</numIndex>
             </numIndex>
             
         </items>

@@ -6,9 +6,10 @@ plugin.tx_frworkportfolio_mvc1.configurations {
 
 includeLibs.tx_div = EXT:div/class.tx_div.php
 includeLibs.tx_lib_switch = EXT:lib/class.tx_lib_switch.php
-includeLibs.tx_frworkportfolio_controller_default1 = EXT:frworkportfolio/controllers/class.tx_frworkportfolio_controller_default1.php
+includeLibs.tx_frworkportfolio_controller_category = EXT:frworkportfolio/controllers/class.tx_frworkportfolio_controller_category.php
 includeLibs.tx_frworkportfolio_controller_years = EXT:frworkportfolio/controllers/class.tx_frworkportfolio_controller_years.php
 includeLibs.tx_frworkportfolio_controller_clientswork = EXT:frworkportfolio/controllers/class.tx_frworkportfolio_controller_clientswork.php
+includeLibs.tx_frworkportfolio_controller_paging = EXT:frworkportfolio/controllers/class.tx_frworkportfolio_controller_paging.php
 
 # The controller switch
 plugin.tx_frworkportfolio_mvc1.controllerSwitch = USER_INT
@@ -16,9 +17,9 @@ plugin.tx_frworkportfolio_mvc1.controllerSwitch {
     userFunc = tx_lib_switch->main
     flexFormSheetName = sDEF
 	#userFunc = tx_frworkportfolio_controller_default1->main
-    default1 = USER
-    default1 {
-       userFunc = tx_frworkportfolio_controller_default1->main
+    category = USER
+    category {
+       userFunc = tx_frworkportfolio_controller_category->main
        setupPath = plugin.tx_frworkportfolio_mvc1.configurations
        defaultAction = listcategories
        #configurations{
@@ -34,6 +35,15 @@ plugin.tx_frworkportfolio_mvc1.controllerSwitch {
        		#templatePath = EXT:frworkportfolio/templates/
        #}
     }
+    paging = USER
+    paging {
+       userFunc = tx_frworkportfolio_controller_paging->main
+       setupPath = plugin.tx_frworkportfolio_mvc1.configurations
+       defaultAction = pagination
+       #configurations{
+       		#templatePath = EXT:frworkportfolio/templates/
+       #}
+    }
     clientswork = USER
     clientswork {
        userFunc = tx_frworkportfolio_controller_clientswork->main
@@ -42,6 +52,23 @@ plugin.tx_frworkportfolio_mvc1.controllerSwitch {
        #configurations{
        		#templatePath = EXT:frworkportfolio/templates/
        #}
+       rgsmoothgallery < plugin.tx_rgsmoothgallery_pi1
+	   rgsmoothgallery {
+				big {
+				file.maxW = 300
+				file.maxH = 345
+			}
+		  
+			height = 230
+			width = 330
+			showThumbs= 1
+			thumbOpacity = 0.8
+		
+			arrows = 1
+			hideInfoPane = 0
+			duration = 0
+			lightbox = 1
+		}
     }
 }
 tt_content.list.20.frworkportfolio_mvc1 =< plugin.tx_frworkportfolio_mvc1.controllerSwitch

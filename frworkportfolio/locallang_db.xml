@@ -25,9 +25,10 @@
 			<label index="tx_frworkportfolio_category.title">Title</label>
 			<label index="tt_content.list_type_pi1">Client Work Portfolio</label>
 			<label index="flexform.controllerSelection">Select subcontroller</label>
-			<label index="flexform.controllerSelection.default1">default1</label>
-			<label index="flexform.controllerSelection.years">years</label>
+			<label index="flexform.controllerSelection.category">Category Menu</label>
+			<label index="flexform.controllerSelection.years">Years Menu</label>
 			<label index="flexform.controllerSelection.clientswork">Client Work Listing</label>
+			<label index="flexform.controllerSelection.paging">Pagination</label>
 			
 		</languageKey>
 	</data>

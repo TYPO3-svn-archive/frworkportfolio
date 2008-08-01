@@ -33,13 +33,14 @@
  * @subpackage	tx_frworkportfolio
  */
 
-tx_div::load('tx_lib_phpTemplateEngine');
+tx_div::load('tx_frworkportfolio_views_gallery');
 
-class tx_frworkportfolio_views_clientswork extends tx_lib_phpTemplateEngine {
+class tx_frworkportfolio_views_clientswork extends tx_frworkportfolio_views_gallery {
 	
 	static $flashcounter;
 	
 	function getWorkProfileOptions($type){
+		
 		$data = $this->get($type);
 		
 		for($data->rewind(); $data->valid(); $data->next()){
@@ -67,6 +68,7 @@ class tx_frworkportfolio_views_clientswork extends tx_lib_phpTemplateEngine {
 			so.write("'.$divId.$flashcounter.'");
 		</script>';
 	}
+
 }
 
 

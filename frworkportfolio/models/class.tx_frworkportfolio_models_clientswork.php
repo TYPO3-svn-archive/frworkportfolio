@@ -37,43 +37,74 @@
  */
 
 class tx_frworkportfolio_models_clientswork extends tx_lib_object {
-
+	
+		var $paging;
+		var $fields;
+		var $local_table;
+		var $mm_table;
+		var $foreign_table;
+		var $groupBy;
+		var $orderBy;
+		var $where;
+		var $limit;
+		
         function tx_frworkportfolio_models_clientswork($controller = null, $parameter = null) {
                 parent::tx_lib_object($controller, $parameter);
+                $this->init();
+        }
+        
+        function init(){
+        	// fix settings
+            $this->fields = '*';
+            $this->local_table = 'tx_frworkportfolio_record';
+            $this->mm_table = 'tx_frworkportfolio_record_category_mm';
+            $this->foreign_table = 'tx_frworkportfolio_category';
+            $this->groupBy = '';
+            $this->orderBy = 'tx_frworkportfolio_record.sorting';
+            $this->where = ' AND tx_frworkportfolio_record.hidden = 0 AND tx_frworkportfolio_record.deleted = 0';
+            $this->limit = '';
+
         }
 
         function load($parameters = null) {
 
-                // fix settings
-                $fields = '*';
-                $local_table = 'tx_frworkportfolio_record';
-                $mm_table = 'tx_frworkportfolio_record_category_mm';
-                $foreign_table = 'tx_frworkportfolio_category';
-                $groupBy = '';
-                $orderBy = 'tx_frworkportfolio_record.sorting';
-                $where = ' AND tx_frworkportfolio_record.hidden = 0 AND tx_frworkportfolio_record.deleted = 0';
-
+                
                 // variable settings
                 if($parameters) {
                 	
                 	if($parameters->get('cat')){
-                		$where .= ' AND uid_foreign = '.intval($parameters->get('cat'));
+                		$this->where .= ' AND uid_foreign = '.intval($parameters->get('cat'));
                 	}
                 	
                 	if($parameters->get('year')){
                 		$startOfYear = intval($parameters->get('year'));
                 		$endOfYear = mktime(23,59,59,12,31,date('Y',$startOfYear));
-                		$where .= ' AND tx_frworkportfolio_record.year BETWEEN '.$startOfYear.' AND '.$endOfYear;
+                		$this->where .= ' AND tx_frworkportfolio_record.year BETWEEN '.$startOfYear.' AND '.$endOfYear;
+                	}
+                	
+                	if($this->paging){
+                			$this->limit = intval($parameters->get('currentPage')).','.intval($parameters->get('recordsPerPage'));
                 	}
                 }
 				
                 // query
-                $result = $GLOBALS['TYPO3_DB']->exec_SELECT_mm_query($fields,$local_table,$mm_table,$foreign_table,$where,$groupBy,$orderBy);
+                $result = $GLOBALS['TYPO3_DB']->exec_SELECT_mm_query($this->fields,
+                														$this->local_table,
+                														$this->mm_table,
+                														$this->foreign_table,
+                														$this->where,
+                														$this->groupBy,
+                														$this->orderBy,
+                														$this->limit);
                 
                 if($result) {
                     while($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($result)) {
+                    		if(key_exists('uid_local',$row)){
+                    	  		$row['options'] = $this->getOptions($row['uid_local']);
+                    	  		$row['rggallery'] = $this->getGallery($row['gallery'],$row['galleryCaptions']);
+                    		}
+                    		$row['currentPage'] = intVal($parameters->get('currentPage'));
                     		
-                    	  	$row['options'] = $this->getOptions($row['uid_local']);
                 			$entry = new tx_lib_object($row);
                         	$this->append($entry);
                     		
@@ -96,6 +127,19 @@ class tx_frworkportfolio_models_clientswork extends tx_lib_object {
 		
 			return $category;
         }
+        
+        function getGallery($images,$imageCaptions){
+        	$gallery = tx_div::makeInstance('tx_frworkportfolio_models_gallery');
+			//print_r($this->controller->configurations->get('rgsmoothgallery.'));
+			$gallery->setConfig($this->controller->configurations->get('rgsmoothgallery.'));
+			$gallery->setGalleryImages($images);
+			$gallery->setGalleryCaptions($imageCaptions);
+			$gallery->load();
+		
+			return $gallery;
+        	
+        }
+   
 }
 
 

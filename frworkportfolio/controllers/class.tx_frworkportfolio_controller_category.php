@@ -35,12 +35,12 @@
 
 tx_div::load('tx_lib_controller');
 
-class tx_frworkportfolio_controller_clientswork extends tx_lib_controller {
+class tx_frworkportfolio_controller_category extends tx_lib_controller {
 
 	var $targetControllers = array();
 	//var $defaultAction = 'show';
 
-    function tx_frworkportfolio_controller_clientswork($parameter1 = null, $parameter2 = null) {
+    function tx_frworkportfolio_controller_category($parameter1 = null, $parameter2 = null) {
     	//print_r(__FUNCTION__);
         parent::tx_lib_controller($parameter1, $parameter2);
         $this->setDefaultDesignator('tx_frworkportfolio');
@@ -49,39 +49,42 @@ class tx_frworkportfolio_controller_clientswork extends tx_lib_controller {
 	/**
 	 * Implementation of listcategoriesAction()
 	 */
-    function listclientworkAction() {
+    function listcategoriesAction() {
     	
-        $modelClassName = tx_div::makeInstanceClassName('tx_frworkportfolio_models_clientswork');
+        $modelClassName = tx_div::makeInstanceClassName('tx_frworkportfolio_models_category');
       
-        $viewClassName = tx_div::makeInstanceClassName('tx_frworkportfolio_views_clientswork');
-        $entryClassName = tx_div::makeInstanceClassName('tx_frworkportfolio_views_clientswork');
+        $viewClassName = tx_div::makeInstanceClassName('tx_frworkportfolio_views_category');
+        //$entryClassName = tx_div::makeInstanceClassName($this->configurations->get('entryClassName'));
+        $entryClassName = tx_div::makeInstanceClassName('tx_frworkportfolio_views_category');
 		$translatorClassName = tx_div::makeInstanceClassName('tx_lib_translator');
 		
         $view = new $viewClassName($this);
-
+        //$view = tx_div::makeInstance('tx_frworkportfolio_views_category');
+        //$view->controller($this);
         
         $model = new $modelClassName($this);
-        $model->paging = true;
-		$this->parameters->set('recordsPerPage',10);
+        //$model = tx_div::makeInstance('tx_frworkportfolio_models_workportfolio');
+        $model->tables = 'tx_frworkportfolio_category';
         $result = $model->load($this->parameters);
       
         for($model->rewind(); $model->valid(); $model->next()) {
             $entry = new $entryClassName($model->current(), $this);
             $view->append($entry);
         }
-        //print_r($this->configurations);
-		//print_r($this->configurations->get('rgsmoothgallery.'));
+        //$view->exchangeArray($result);
         $view->setPathToTemplateDirectory('EXT:frworkportfolio/templates/');
-        $out = $view->render('clientswork');
+        $out = $view->render('category');
         
+		//$translator = new $translatorClassName($this, $view);
+		//$out = $translator->translateContent();
         return $out;
     }
 }
 
 
 
-if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/frworkportfolio/controllers/class.tx_frworkportfolio_controller_clientswork.php'])	{
-	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/frworkportfolio/controllers/class.tx_frworkportfolio_controller_clientswork.php']);
+if (defined('TYPO3_MODE') && $TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/frworkportfolio/controllers/class.tx_frworkportfolio_controller_category.php'])	{
+	include_once($TYPO3_CONF_VARS[TYPO3_MODE]['XCLASS']['ext/frworkportfolio/controllers/class.tx_frworkportfolio_controller_category.php']);
 }
 
 ?>
