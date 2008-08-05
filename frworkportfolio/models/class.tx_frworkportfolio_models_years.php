@@ -26,9 +26,9 @@
 
 
 /**
- * Class that implements the model for table workportfolio.
+ * Class that implements the model for table tx_frworkportfolio_record.
  *
- * Work Portfolio
+ * Work Portfolio Years
  *
  *
  * @author	Paul Schweppe <paul@fluid-rock.com>
@@ -53,19 +53,19 @@ class tx_frworkportfolio_models_years extends tx_lib_object {
 
                 // variable settings
                 if($parameters) {
-					// do query modifications according to incoming parameters here.
+
                 }
 
                 // query
                 $query = $GLOBALS['TYPO3_DB']->SELECTquery($fields, $tables, $where, $groupBy, $orderBy);
-                //print_r($query);
+
                 $result = $GLOBALS['TYPO3_DB']->exec_SELECTquery($fields, $tables, $where, $groupBy, $orderBy);
                 if($result) {
                     while($row = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($result)) {
-                    		//$startyear = $row['minyear'];
+
                     		$startyear = mktime(0,0,0,1,1,date('Y',$row['minyear']));
                     		$endYear = mktime(23,59,59,12,31,date('Y',$row['maxyear']));
-                    		//print_r($endYear.'<br/>');
+
                     		while ($startyear < $endYear){
                     			$years = array('yeartimestamp' => $startyear,
                     							'yeartext'=> date("Y",$startyear));

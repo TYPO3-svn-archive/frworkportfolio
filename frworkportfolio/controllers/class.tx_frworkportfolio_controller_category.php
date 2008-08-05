@@ -26,7 +26,8 @@
 
 
 /**
- * Class that implements the controller "default1" for tx_frworkportfolio.
+ * Class that implements the controller "category" for tx_frworkportfolio. Outputs list of 
+ * categories for searching the client work portfolios
  *
  * @author	Paul Schweppe <paul@fluid-rock.com>
  * @package	TYPO3
@@ -38,10 +39,15 @@ tx_div::load('tx_lib_controller');
 class tx_frworkportfolio_controller_category extends tx_lib_controller {
 
 	var $targetControllers = array();
-	//var $defaultAction = 'show';
 
+	/**
+	 * Constructor
+	 *
+	 * @param unknown_type $parameter1
+	 * @param unknown_type $parameter2
+	 * @return tx_frworkportfolio_controller_category
+	 */
     function tx_frworkportfolio_controller_category($parameter1 = null, $parameter2 = null) {
-    	//print_r(__FUNCTION__);
         parent::tx_lib_controller($parameter1, $parameter2);
         $this->setDefaultDesignator('tx_frworkportfolio');
     }
@@ -52,18 +58,17 @@ class tx_frworkportfolio_controller_category extends tx_lib_controller {
     function listcategoriesAction() {
     	
         $modelClassName = tx_div::makeInstanceClassName('tx_frworkportfolio_models_category');
-      
         $viewClassName = tx_div::makeInstanceClassName('tx_frworkportfolio_views_category');
-        //$entryClassName = tx_div::makeInstanceClassName($this->configurations->get('entryClassName'));
+        
+		//Not sure if the is correct
         $entryClassName = tx_div::makeInstanceClassName('tx_frworkportfolio_views_category');
 		$translatorClassName = tx_div::makeInstanceClassName('tx_lib_translator');
 		
         $view = new $viewClassName($this);
-        //$view = tx_div::makeInstance('tx_frworkportfolio_views_category');
-        //$view->controller($this);
+
         
         $model = new $modelClassName($this);
-        //$model = tx_div::makeInstance('tx_frworkportfolio_models_workportfolio');
+
         $model->tables = 'tx_frworkportfolio_category';
         $result = $model->load($this->parameters);
       
@@ -71,12 +76,11 @@ class tx_frworkportfolio_controller_category extends tx_lib_controller {
             $entry = new $entryClassName($model->current(), $this);
             $view->append($entry);
         }
-        //$view->exchangeArray($result);
+
         $view->setPathToTemplateDirectory('EXT:frworkportfolio/templates/');
         $out = $view->render('category');
         
-		//$translator = new $translatorClassName($this, $view);
-		//$out = $translator->translateContent();
+		
         return $out;
     }
 }

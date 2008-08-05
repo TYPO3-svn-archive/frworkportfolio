@@ -26,7 +26,8 @@
 
 
 /**
- * Class that implements the controller "default1" for tx_frworkportfolio.
+ * Class that implements the controller "years" for tx_frworkportfolio. Year menu for the
+ * client work portfolios. Show portfolios for particular years
  *
  * @author	Paul Schweppe <paul@fluid-rock.com>
  * @package	TYPO3
@@ -38,10 +39,8 @@ tx_div::load('tx_lib_controller');
 class tx_frworkportfolio_controller_years extends tx_lib_controller {
 
 	var $targetControllers = array();
-	//var $defaultAction = 'show';
 
     function tx_frworkportfolio_controller_years($parameter1 = null, $parameter2 = null) {
-    	//print_r(__FUNCTION__);
         parent::tx_lib_controller($parameter1, $parameter2);
         $this->setDefaultDesignator('tx_frworkportfolio');
     }
@@ -54,28 +53,22 @@ class tx_frworkportfolio_controller_years extends tx_lib_controller {
         $modelClassName = tx_div::makeInstanceClassName('tx_frworkportfolio_models_years');
       
         $viewClassName = tx_div::makeInstanceClassName('tx_frworkportfolio_views_years');
-        //$entryClassName = tx_div::makeInstanceClassName($this->configurations->get('entryClassName'));
         $entryClassName = tx_div::makeInstanceClassName('tx_frworkportfolio_views_years');
 		$translatorClassName = tx_div::makeInstanceClassName('tx_lib_translator');
 		
         $view = new $viewClassName($this);
-        //$view = tx_div::makeInstance('tx_frworkportfolio_views_category');
-        //$view->controller($this);
         
         $model = new $modelClassName($this);
-        //$model = tx_div::makeInstance('tx_frworkportfolio_models_workportfolio');
         $result = $model->load($this->parameters);
       
         for($model->rewind(); $model->valid(); $model->next()) {
             $entry = new $entryClassName($model->current(), $this);
             $view->append($entry);
         }
-        //$view->exchangeArray($result);
+
         $view->setPathToTemplateDirectory('EXT:frworkportfolio/templates/');
         $out = $view->render('yearmenu');
         
-		//$translator = new $translatorClassName($this, $view);
-		//$out = $translator->translateContent();
         return $out;
     }
 }

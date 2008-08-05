@@ -1,9 +1,6 @@
 <?php
 /**
- * Example template for phpTemplateEngine.
- *
- * Edit this template to match your needs.
- * $entry is of type tx_lib_object and represents a single data row.
+ * Template for years menu
  */
 ?>
 

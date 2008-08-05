@@ -26,9 +26,9 @@
 
 
 /**
- * Class that implements the model for table workportfolio.
+ * Class that implements the model for workportfolio gallery.
  *
- * Work Portfolio
+ * Work Portfolio Gallery
  *
  *
  * @author	Paul Schweppe <paul@fluid-rock.com>
@@ -119,47 +119,6 @@ class tx_frworkportfolio_models_gallery extends tx_lib_object {
         	$advancedSettings.= ($config['externalThumbs']) ? 'useExternalCarousel:true,carouselElement:$("'.$config['externalThumbs'].'"),' : '';
         	
         	$this->advancedSettings = $config['advancedSettings'] = $advancedSettings;
-        	
-        	 // configuration
-	    	$config['rgconfiguration']  = '		
-	  
-	    		<script type="text/javascript">'.$externalControl1.'
-	    			function startGallery'.$this->uniqueId.'() {
-	    				//alert("PAUL");
-	    			  if(window.gallery'.$this->uniqueId.')
-	    			    {
-	    			    //try
-	    			      //{ 
-	    				    '.$externalControl2.' myGallery'.$this->uniqueId.' = new gallery($(\'myGallery'.$this->uniqueId.'\'), {
-	    					    
-	    					    '.$config['duration'].',
-	    					      showArrows: '.$config['arrows'].',
-	                  showCarousel: '.$config['showThumbs'].',
-	                  embedLinks:'.$config['lightbox'].',
-	                  '.$advancedSettings.'
-	    					    lightbox:true    					    
-	    				    });
-	    				    
-	    				    var mylightbox = new Lightbox();
-	    				    //}catch(error){
-	    				    //window.setTimeout("startGallery'.$this->uniqueId.'();",2500);
-	    				    //}
-	    				  }else{
-	    				  window.gallery'.$this->uniqueId.'=true;
-	    				  if(this.ie)
-	    				    {
-	    				    window.setTimeout("startGallery'.$this->uniqueId.'();",3000);
-	    				    }else{
-	    				    window.setTimeout("startGallery'.$this->uniqueId.'();",100);
-	    				    }
-	    				  }
-	    			}
-	    			window.onDomReady(startGallery'.$this->uniqueId.');
-	    		</script>
-	      <noscript>
-	  		  <div><img src="typo3temp/pics/0b87c74604.jpg" /></div>
-	  		</noscript>
-	        ';       
         	
 			$this->config = $config;
 			$this->_configImages();

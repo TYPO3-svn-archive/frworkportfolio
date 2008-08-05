@@ -26,7 +26,8 @@
 
 
 /**
- * Class that implements the controller "default1" for tx_frworkportfolio.
+ * Class that implements the controller "paging" for tx_frworkportfolio. Pagination for the list 
+ * of work portfolios
  *
  * @author	Paul Schweppe <paul@fluid-rock.com>
  * @package	TYPO3
@@ -38,16 +39,14 @@ tx_div::load('tx_lib_controller');
 class tx_frworkportfolio_controller_paging extends tx_lib_controller {
 
 	var $targetControllers = array();
-	//var $defaultAction = 'show';
 
     function tx_frworkportfolio_controller_paging($parameter1 = null, $parameter2 = null) {
-    	//print_r(__FUNCTION__);
         parent::tx_lib_controller($parameter1, $parameter2);
         $this->setDefaultDesignator('tx_frworkportfolio');
     }
     
 	/**
-	 * Implementation of listcategoriesAction()
+	 * Implementation of paginationAction()
 	 */
     function paginationAction() {
     	

@@ -26,7 +26,7 @@
 
 
 /**
- * Class that implements the view for category.
+ * Class that implements the view for paging.
  *
  * @author	Paul Schweppe <paul@fluid-rock.com>
  * @package	TYPO3

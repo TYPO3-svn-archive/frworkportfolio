@@ -26,9 +26,9 @@
 
 
 /**
- * Class that implements the model for table workportfolio.
+ * Class that implements the model for table tx_frworkportfolio_category. 
  *
- * Work Portfolio
+ * Work Portfolio Categories listing
  *
  *
  * @author	Paul Schweppe <paul@fluid-rock.com>

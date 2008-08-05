@@ -26,7 +26,8 @@
 
 
 /**
- * Class that implements the controller "default1" for tx_frworkportfolio.
+ * Class that implements the controller "clientswork" for tx_frworkportfolio. Output a list of 
+ * client work portfolios in flash or gallery format
  *
  * @author	Paul Schweppe <paul@fluid-rock.com>
  * @package	TYPO3
@@ -38,16 +39,14 @@ tx_div::load('tx_lib_controller');
 class tx_frworkportfolio_controller_clientswork extends tx_lib_controller {
 
 	var $targetControllers = array();
-	//var $defaultAction = 'show';
 
     function tx_frworkportfolio_controller_clientswork($parameter1 = null, $parameter2 = null) {
-    	//print_r(__FUNCTION__);
         parent::tx_lib_controller($parameter1, $parameter2);
         $this->setDefaultDesignator('tx_frworkportfolio');
     }
     
 	/**
-	 * Implementation of listcategoriesAction()
+	 * Implementation of listclientworkAction()
 	 */
     function listclientworkAction() {
     	
@@ -59,7 +58,6 @@ class tx_frworkportfolio_controller_clientswork extends tx_lib_controller {
 		
         $view = new $viewClassName($this);
 
-        
         $model = new $modelClassName($this);
         $model->paging = true;
 		$this->parameters->set('recordsPerPage',10);
@@ -69,8 +67,7 @@ class tx_frworkportfolio_controller_clientswork extends tx_lib_controller {
             $entry = new $entryClassName($model->current(), $this);
             $view->append($entry);
         }
-        //print_r($this->configurations);
-		//print_r($this->configurations->get('rgsmoothgallery.'));
+
         $view->setPathToTemplateDirectory('EXT:frworkportfolio/templates/');
         $out = $view->render('clientswork');
         

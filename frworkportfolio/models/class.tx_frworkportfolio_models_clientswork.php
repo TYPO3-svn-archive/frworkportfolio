@@ -68,8 +68,6 @@ class tx_frworkportfolio_models_clientswork extends tx_lib_object {
 
         function load($parameters = null) {
 
-                
-                // variable settings
                 if($parameters) {
                 	
                 	if($parameters->get('cat')){
