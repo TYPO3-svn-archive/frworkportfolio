@@ -11,6 +11,10 @@ includeLibs.tx_frworkportfolio_controller_years = EXT:frworkportfolio/controller
 includeLibs.tx_frworkportfolio_controller_clientswork = EXT:frworkportfolio/controllers/class.tx_frworkportfolio_controller_clientswork.php
 includeLibs.tx_frworkportfolio_controller_paging = EXT:frworkportfolio/controllers/class.tx_frworkportfolio_controller_paging.php
 
+plugin.tx_frworkportfolio_mvc1.categoryFolder = 28
+plugin.tx_frworkportfolio_mvc1.optionsFolder = 28
+plugin.tx_frworkportfolio_mvc1.clientWorkFolder = 28
+
 # The controller switch
 plugin.tx_frworkportfolio_mvc1.controllerSwitch = USER_INT
 plugin.tx_frworkportfolio_mvc1.controllerSwitch {
@@ -22,6 +26,7 @@ plugin.tx_frworkportfolio_mvc1.controllerSwitch {
        userFunc = tx_frworkportfolio_controller_category->main
        setupPath = plugin.tx_frworkportfolio_mvc1.configurations
        defaultAction = listcategories
+       categoryFolder < plugin.tx_frworkportfolio_mvc1.categoryFolder
        #configurations{
        		#templatePath = EXT:frworkportfolio/templates/
        #}
@@ -31,6 +36,7 @@ plugin.tx_frworkportfolio_mvc1.controllerSwitch {
        userFunc = tx_frworkportfolio_controller_years->main
        setupPath = plugin.tx_frworkportfolio_mvc1.configurations
        defaultAction = listyears
+       clientWorkFolder < plugin.tx_frworkportfolio_mvc1.clientWorkFolder
        #configurations{
        		#templatePath = EXT:frworkportfolio/templates/
        #}
@@ -49,6 +55,9 @@ plugin.tx_frworkportfolio_mvc1.controllerSwitch {
        userFunc = tx_frworkportfolio_controller_clientswork->main
        setupPath = plugin.tx_frworkportfolio_mvc1.configurations
        defaultAction = listclientwork
+       	categoryFolder < plugin.tx_frworkportfolio_mvc1.categoryFolder
+		optionsFolder < plugin.tx_frworkportfolio_mvc1.optionsFolder
+		clientWorkFolder < plugin.tx_frworkportfolio_mvc1.clientWorkFolder
        #configurations{
        		#templatePath = EXT:frworkportfolio/templates/
        #}

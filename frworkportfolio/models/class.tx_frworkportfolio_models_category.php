@@ -47,6 +47,7 @@ class tx_frworkportfolio_models_category extends tx_lib_object {
 	    var $recordId; // Optional
 	    var $foreignTable; // Optional
 	    var $mmtable; // Optional
+	    var $categoryFolder;
 	
     
         function tx_frworkportfolio_models_category($controller = null, $parameter = null) {
@@ -65,12 +66,12 @@ class tx_frworkportfolio_models_category extends tx_lib_object {
                 // variable settings
                 if($this->recordId) {
 
-                	$where = ' AND '.$this->foreignTable.'.hidden = 0 AND '.$this->foreignTable.'.deleted = 0 ';
+                	$where = ' AND '.$this->foreignTable.'.hidden = 0 AND '.$this->foreignTable.'.deleted = 0 AND '.$this->foreignTable.'.pid = '.$this->categoryFolder;
                 	$where .= ' AND uid_local = '.intval($this->recordId);
                 	$result = $GLOBALS['TYPO3_DB']->exec_SELECT_mm_query($this->fields,$this->tables,$this->mmtable,$this->foreignTable,$where,$this->groupBy,$this->orderBy);
 
                 }else{
-                	$where = ' hidden = 0 AND deleted = 0 ';
+                	$where = ' hidden = 0 AND deleted = 0 AND pid='.$this->categoryFolder;
                 	$result = $GLOBALS['TYPO3_DB']->exec_SELECTquery($fields, $tables, $where, $groupBy, $orderBy);
                 }
                 if($result) {

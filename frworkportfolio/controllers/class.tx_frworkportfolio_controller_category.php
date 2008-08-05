@@ -56,7 +56,7 @@ class tx_frworkportfolio_controller_category extends tx_lib_controller {
 	 * Implementation of listcategoriesAction()
 	 */
     function listcategoriesAction() {
-    	
+
         $modelClassName = tx_div::makeInstanceClassName('tx_frworkportfolio_models_category');
         $viewClassName = tx_div::makeInstanceClassName('tx_frworkportfolio_views_category');
         
@@ -69,6 +69,11 @@ class tx_frworkportfolio_controller_category extends tx_lib_controller {
         
         $model = new $modelClassName($this);
 
+        //$model->setArticleFolder((int) $this->configurations->get('articleFolder'));
+        $model->categoryFolder = (int) $this->configurations->get('categoryFolder');
+       // print_r($model->categoryFolder);
+        //$model->setTypeFolder((int) $this->configurations->get('typeFolder'));
+        
         $model->tables = 'tx_frworkportfolio_category';
         $result = $model->load($this->parameters);
       

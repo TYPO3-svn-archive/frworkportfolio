@@ -39,6 +39,7 @@ tx_div::load('tx_lib_controller');
 class tx_frworkportfolio_controller_clientswork extends tx_lib_controller {
 
 	var $targetControllers = array();
+	
 
     function tx_frworkportfolio_controller_clientswork($parameter1 = null, $parameter2 = null) {
         parent::tx_lib_controller($parameter1, $parameter2);
@@ -60,6 +61,10 @@ class tx_frworkportfolio_controller_clientswork extends tx_lib_controller {
 
         $model = new $modelClassName($this);
         $model->paging = true;
+        $model->categoryFolder = (int) $this->configurations->get('categoryFolder');
+        $model->optionsFolder = (int) $this->configurations->get('optionsFolder');
+        $model->clientWorkFolder = (int) $this->configurations->get('clientWorkFolder');
+        
 		$this->parameters->set('recordsPerPage',10);
         $result = $model->load($this->parameters);
       

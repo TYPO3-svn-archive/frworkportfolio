@@ -38,6 +38,8 @@
 
 class tx_frworkportfolio_models_years extends tx_lib_object {
 
+		var $clientWorkFolder;
+		
         function tx_frworkportfolio_models_years($controller = null, $parameter = null) {
                 parent::tx_lib_object($controller, $parameter);
         }
@@ -49,7 +51,7 @@ class tx_frworkportfolio_models_years extends tx_lib_object {
                 $tables = 'tx_frworkportfolio_record';
                 $groupBy = 'deleted';
                 $orderBy = 'sorting';
-                $where = 'hidden = 0 AND deleted = 0';
+                $where = 'hidden = 0 AND deleted = 0 AND pid='.intval($this->clientWorkFolder);
 
                 // variable settings
                 if($parameters) {

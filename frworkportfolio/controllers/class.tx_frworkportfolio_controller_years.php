@@ -59,6 +59,8 @@ class tx_frworkportfolio_controller_years extends tx_lib_controller {
         $view = new $viewClassName($this);
         
         $model = new $modelClassName($this);
+        $model->clientWorkFolder = (int) $this->configurations->get('clientWorkFolder');
+        
         $result = $model->load($this->parameters);
       
         for($model->rewind(); $model->valid(); $model->next()) {

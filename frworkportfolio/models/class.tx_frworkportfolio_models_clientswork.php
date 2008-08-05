@@ -47,6 +47,9 @@ class tx_frworkportfolio_models_clientswork extends tx_lib_object {
 		var $orderBy;
 		var $where;
 		var $limit;
+		var $yearFolder;
+		var $clientWorkFolder;
+		var $optionsFolder;
 		
         function tx_frworkportfolio_models_clientswork($controller = null, $parameter = null) {
                 parent::tx_lib_object($controller, $parameter);
@@ -84,6 +87,9 @@ class tx_frworkportfolio_models_clientswork extends tx_lib_object {
                 			$this->limit = intval($parameters->get('currentPage')).','.intval($parameters->get('recordsPerPage'));
                 	}
                 }
+                
+                $this->where .= ' AND tx_frworkportfolio_record.pid = '.intval($this->clientWorkFolder);
+           
 				
                 // query
                 $result = $GLOBALS['TYPO3_DB']->exec_SELECT_mm_query($this->fields,
@@ -116,6 +122,7 @@ class tx_frworkportfolio_models_clientswork extends tx_lib_object {
 			//$category->tables = 'tx_frworkportfolio_record';
 			
 			$category->recordId = $id;
+			$category->pid = $this->optionsFolder;
 			
 			$category->foreignTable ='tx_frworkportfolio_options';
 			$category->mmtable = 'tx_frworkportfolio_record_options_mm';
